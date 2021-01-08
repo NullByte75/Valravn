@@ -6,7 +6,6 @@ install the libraries: subprocess, cryptography, re, json, requests, pathlib
 install pyinstaller (pip install pyinstaller)
 #
 run the builder
-#
 #THIS IS ONLY FOR EDUCATIONAL PURPOSES!
 #
 # I DO NOT TAKE RESPONSABILITY FOR THE USE OF THIS TOOL!
