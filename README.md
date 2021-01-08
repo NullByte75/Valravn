@@ -1,10 +1,12 @@
 # totally-not-sus-program
 Ransomeware written in Python3
 # How to use
-change the setting (where there are the #)
+install the libraries: subprocess, cryptography, re, json, requests, pathlib
 #
-compile with pyinstaller
+install pyinstaller (pip install pyinstaller)
 #
-send to victim
+run the builder
+#
+#THIS IS ONLY FOR EDUCATIONAL PURPOSES!
 #
 # I DO NOT TAKE RESPONSABILITY FOR THE USE OF THIS TOOL!
