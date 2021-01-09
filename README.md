@@ -1,4 +1,4 @@
-# Loptr
+# Valravn
 Ransomeware written in Python3
 # How to use
 install the libraries: subprocess, cryptography, re, json, requests, pathlib
